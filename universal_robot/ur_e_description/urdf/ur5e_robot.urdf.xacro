@@ -11,6 +11,12 @@
   <!-- arm -->
   <xacro:ur5e_robot prefix="" joint_limited="false"/>
 
+  <!-- ft300 -->
+  <xacro:include filename="$(find robotiq_85_gripper)/robotiq_85_description/urdf/robotiq_85_gripper.urdf.xacro" />
+
+  <!-- robotiq_85 -->
+  <xacro:include filename="$(find robotiq_ft_sensor)/urdf/robotiq_ft300.urdf.xacro" />
+
   <link name="world" />
 
   <joint name="world_joint" type="fixed">
@@ -18,5 +24,25 @@
     <child link = "base_link" />
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
   </joint>
+
+  <!-- ft300 -->
+
+  <xacro:robotiq_ft300 parent="tool0" prefix="">
+      <origin xyz="0 0 0 " rpy="0 0 0"/>
+  </xacro:robotiq_ft300>
+
+  <!-- robotiq_85 -->
+
+ <xacro:robotiq_85_gripper prefix=""/>
+
+  <joint name="ft_gripper_joint" type="fixed">
+    <parent link="robotiq_ft_frame_id"/>
+    <child link="robotiq_arg2f_base_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+
+
+
 
 </robot>
