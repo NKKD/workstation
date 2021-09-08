@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-  <arg name="limited" default="ture"  doc="If true, limits joint range [-PI, PI] on all joints." />
+  <arg name="limited" default="true"  doc="If true, limits joint range [-PI, PI] on all joints." />
   <arg name="paused" default="true" doc="Starts gazebo in paused mode" />
   <arg name="gui" default="true" doc="Starts gazebo gui" />
 
@@ -26,12 +26,5 @@
   <!-- load other controllers -->
   <node name="ros_control_controller_manager" pkg="controller_manager" type="controller_manager" respawn="false"
           output="screen" args="load joint_group_position_controller" />
-
-  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
-    <param name="use_gui" value="true"/>
-  </node>
-
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find ur_e_description)/cfg/view_robot.rviz" required="true" />
 
 </launch>
